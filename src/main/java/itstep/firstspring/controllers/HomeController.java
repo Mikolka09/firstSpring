@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
 
     private int count = 0;
-    @GetMapping("/") //Маршрут, по которому будет отвечать данный метод контроллера
+    @GetMapping("/home") //Маршрут, по которому будет отвечать данный метод контроллера
     public String home(Model model){//Модель представления данных, которую мне нужно наполнить
         //это аналог ViewData, ViewBag из asp...
         count++;
