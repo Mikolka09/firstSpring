@@ -1,8 +1,7 @@
-package itstep.firstspring.entities;
+package com.itstep.firstspring.entities;
 
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
@@ -21,11 +20,13 @@ public class SiteContact {
     private String name;
     private String email;
     private String phone;
-    @Column(columnDefinition = "TEXT")
+
+    @Column(columnDefinition="TEXT")
     private String message;
 
-    @CreatedDate
+
     @Column(name = "created_at", nullable = false, updatable = false)
+    @CreatedDate // Разобраться - почему автоматом не создало в базе данных
     private Date createdAt = new Date();
 
     @LastModifiedDate

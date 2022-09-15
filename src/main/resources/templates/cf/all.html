@@ -5,8 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-
-<h1> Static Index </h1>
-
+<ul th:each="el: ${all}">
+    <li th:text="${el.name}"></li>
+</ul>
 </body>
 </html>
