@@ -5,29 +5,27 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Data
-@Table(name="portfolio_items")
-public class PortfolioItem {
+@Table(name="portfolio_category")
+public class PortfolioCategory {
 
     //One to Many
-    @ManyToOne
+    @OneToMany
     @JoinColumn(name = "category_id")
-    private PortfolioCategory portfolioCategory;
+    private Set<PortfolioItem> items;
 
-    //--------------------------------------------------------------
+
+
+    //-----------------------------------------------------
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
     private String name; //Наименование работ
-    private String mainImg; //Сссылка на главное изображение
-    @Column(columnDefinition="TEXT")
-    private String description; //Описание работы
-    private Integer price; //Стоимость
-    private Integer time; //Затраченое время в часах
 
     @CreationTimestamp
     private Date created_at; //Дата публикации работы

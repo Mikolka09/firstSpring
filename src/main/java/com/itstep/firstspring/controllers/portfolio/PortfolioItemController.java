@@ -1,7 +1,9 @@
 package com.itstep.firstspring.controllers.portfolio;
 
 import com.itstep.firstspring.entities.portfolio.PortfolioItem;
+import com.itstep.firstspring.repos.portfolio.PortfolioCategoryRepository;
 import com.itstep.firstspring.repos.portfolio.PortfolioItemRepository;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,10 +15,12 @@ import org.springframework.web.servlet.view.RedirectView;
 public class PortfolioItemController {
 
     private final PortfolioItemRepository portfolioItemRepository;
+    private final PortfolioCategoryRepository portfolioCategoryRepository;
 
-    public PortfolioItemController(PortfolioItemRepository portfolioItemRepository) {
+    public PortfolioItemController(PortfolioItemRepository portfolioItemRepository, PortfolioCategoryRepository portfolioCategoryRepository) {
 
         this.portfolioItemRepository = portfolioItemRepository;
+        this.portfolioCategoryRepository = portfolioCategoryRepository;
     }
 
     @GetMapping("/portfolio")
@@ -27,7 +31,8 @@ public class PortfolioItemController {
     }
 
     @GetMapping("/portfolio/create")
-    public String create() {
+    public String create(Model model) {
+        model.addAttribute("categories", portfolioCategoryRepository.findAll());
         return "/portfolio/form-create";
     }
 
