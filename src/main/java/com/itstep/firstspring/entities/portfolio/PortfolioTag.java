@@ -6,21 +6,24 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Data
-@Table(name = "portfolio_categories")
-public class PortfolioCategory {
+@Table(name = "portfolio_tags")
+public class PortfolioTag {
 
     //*---------------------------------
-    // One to Many
-    @OneToMany(mappedBy = "category")
+    // Many to Many
+    @ManyToMany (fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },
+            mappedBy = "tags")
     @JsonIgnore
-    private Set<PortfolioItem> items;
-
-
-
+    private Set<PortfolioItem> items = new HashSet<>();
 
     //*---------------------------------
     @Id
@@ -28,9 +31,8 @@ public class PortfolioCategory {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private String name; // Наименование категории
+    private String name; // Наименование метки
 
     @CreationTimestamp
     private Date created_at; // = new Date();
-
 }
