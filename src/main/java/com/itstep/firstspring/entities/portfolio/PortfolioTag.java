@@ -20,8 +20,8 @@ public class PortfolioTag {
             cascade = {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
-            },
-            mappedBy = "tags")
+            }
+            /*mappedBy = "tags"*/)
     @JsonIgnore
     private Set<PortfolioItem> items = new HashSet<>();
 

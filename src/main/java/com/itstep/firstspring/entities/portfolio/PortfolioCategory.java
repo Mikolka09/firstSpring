@@ -31,6 +31,6 @@ public class PortfolioCategory {
     private String name; // Наименование категории
 
     @CreationTimestamp
-    private Date created_at; // = new Date();
+    private Date created_at = new Date();
 
 }

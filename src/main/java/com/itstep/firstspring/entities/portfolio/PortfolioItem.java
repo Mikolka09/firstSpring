@@ -29,8 +29,8 @@ public class PortfolioItem {
                     CascadeType.MERGE
             })
     @JoinTable(name = "portfolio_items_tags",
-            joinColumns = { @JoinColumn(name = "portfolio_id") },
-            inverseJoinColumns = { @JoinColumn(name = "tag_id") })
+            joinColumns =  @JoinColumn(name = "portfolio_id") ,
+            inverseJoinColumns =  @JoinColumn(name = "tag_id") )
     @JsonIgnore
     private Set<PortfolioTag> tags = new HashSet<>();
 
